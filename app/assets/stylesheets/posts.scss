@@ -1,0 +1,42 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.posts-table {
+  width: 80%;
+  border: 1px solid black;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+
+  .author {
+    width: 150px;
+  }
+
+  .title {
+    width: 150px;
+  }
+
+  .bottom-border {
+    border-bottom: 1px solid black;
+  }
+
+}
+
+.comments-table {
+  border-top: 1px solid black;
+  width: 100%;
+
+  .author {
+    width: 150px;
+  }
+
+  .body {
+    width: auto;
+  }
+
+  .actions {
+    width: 100px;
+  }
+}
