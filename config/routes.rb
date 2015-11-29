@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
 
 
-  resources :posts, except: [:show] do
-    resources :comments, only: [:create, :destroy]
+  resources :posts, except: [:show, :filter] do   
   end
+ 
+  get 'posts/filter/:tag_name' => 'posts#filter'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

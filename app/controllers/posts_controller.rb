@@ -4,12 +4,22 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order(updated_at: :desc)
+    @tags = @posts.tag_counts
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+  end
+
+  # GET /posts/filter
+  def filter
+    @posts = Post.tagged_with(params[:tag_name])
+    @tags = @posts.tag_counts
+    respond_to do |format|
+      format.html { render 'posts/index' }
+    end
   end
 
   # GET /posts/1/edit
@@ -57,13 +67,14 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:author, :title, :body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:author, :title, :body, :tag_list)
+  end
 end

@@ -6,6 +6,11 @@ body {
   line-height: 18px;
 }
 
+#body {
+  width: 80%;
+  margin: auto;
+}
+
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -16,19 +21,6 @@ pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
-}
-
-a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
 }
 
 div {
@@ -70,4 +62,8 @@ div {
     font-size: 12px;
     list-style: square;
   }
+}
+
+.filter-by-tag {
+  padding: 5px;
 }

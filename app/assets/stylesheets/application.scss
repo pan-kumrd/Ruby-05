@@ -13,12 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
-
-html {
-    width: 100%;
-}
-
-body {
-    width: 100%;
-}
+ 
+@import "bootstrap-sprockets";
+@import "bootstrap";
