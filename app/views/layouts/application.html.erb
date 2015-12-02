@@ -1,15 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lecture1</title>
+  <title>Michalův blogísek ¯\_(ツ)_/¯</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<div id="body">
+<div id="header" class="panel panel-info">
+  <div class="panel-heading">
+    <div class="panel-title">
+      <h1><a href="/">Michalův blogísek</a></h1>
+    </div>
+  </div>
+  <div class="panel-footer clearfix">
+    <div class="pull-left">
+      <% if can? :create, Post %>
+        <%= link_to 'New Post', new_post_path, class: 'btn btn-success' %>
+      <% end %>
+    </div>
+    <div class="pull-right">
+      <div id="user-panel">
+      <% if user_signed_in? %>
+        <%= link_to current_user.email, edit_user_registration_path %>&nbsp;&nbsp;&nbsp; <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'Sign in', new_session_path(:user), class: 'btn btn-primary' %> |
+        <%= link_to 'Register', new_registration_path(:user), class: 'btn btn-default' %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div id="notices">
+  <% if notice && !notice.empty? %>
+    <div class="alert alert-info" role="alert"><%= notice %></div>
+  <% end %>
+  <% if alert && !alert.empty? %>
+    <div class="alert alert-danger" role="alert"><%= alert %></div>
+  <% end %>
+</div>
+
+<div id="body">
+      
 <%= yield %>
 
 </div>

@@ -1,0 +1,13 @@
+.avatar-preview {
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+}
+
+.avatar-preview img {
+  padding: 10px;
+}
+
+.avatar-form {
+  display: inline-block;
+}

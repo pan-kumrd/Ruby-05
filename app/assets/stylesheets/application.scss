@@ -16,3 +16,37 @@
  
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  margin: 20px;
+}
+
+#header {
+  width: 800px;
+  margin: auto;
+  margin-bottom: 20px;
+  
+  .panel-title {
+    padding: 20px 0 20px 0;
+    text-align: center;
+  }
+
+  #user-panel {
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 34px;
+  }
+}
+
+#notices {
+  width: 800px;
+  margin: auto;
+}  
+
+#body {
+  width: 800px;
+  margin: auto;
+}
+
+

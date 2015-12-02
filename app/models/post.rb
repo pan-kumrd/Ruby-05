@@ -1,7 +1,9 @@
 class Post < ActiveRecord::Base
-  acts_as_taggable
-
-  validates :author, :title, :body, presence: true
-  validates :tag_list, length: { minimum: 1,
-                                 too_short: "Post must have at least one tag" }
+  belongs_to :user
+  resourcify # for rolify
+  validates :title, :body, presence: true
+  
+  def user
+    return User.find(self.user_id)
+  end
 end

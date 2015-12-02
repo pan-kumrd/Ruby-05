@@ -1,0 +1,25 @@
+<div class='post panel panel-default' id='post-#<%= post.id %>'>
+  <div class='panel-heading'>
+    <div class='panel-title'>
+      <% if post.user.avatar.file? %>
+      <span class="avatar">
+        <%= image_tag post.user.avatar.url(:thumb) %>
+      </span>
+      <% end %>
+      <span class="post-title">
+        <h1><%= link_to post.title, post_path(post) %></h1><br/>
+        by <strong><%= post.user.email %></strong> on <%= post.created_at %>
+      </span>
+    </div>
+  </div>
+  <div class='panel-body'>
+    <%= simple_format(post.body) %>
+  </div>
+  <% if can? :update, post %>
+  <div class='panel-footer'>
+    <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-default' %>
+    <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Do you really want to remove post \'' + post.title + '\'?' }, class: 'btn btn-danger' %>
+  </div>
+  <% end %>
+</div>
+                                          

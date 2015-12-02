@@ -5,26 +5,22 @@
 // We can now inherit from bootstrap
 @import "_bootstrap.scss";
 
-.post-head {
-  @extend h3;
+.post .panel-title h1 {
   display: inline;
-  margin: 0;
-  padding: 0;
-  
-  .post-title {
-    @extend h1;
-    display: inline;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .post-author {
-    font-weight: bold;
-  } 
+  padding-right: 8px;
 }
 
-.post-body {
-  padding: 8px;
+.post .panel-body {
   text-align: justify;
 }
 
+.post .avatar {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.post .post-title {
+  display: inline-block;
+  vertical-align: middle;
+}

@@ -1,17 +1,29 @@
 Rails.application.routes.draw do
 
-
-
-  resources :posts, except: [:show, :filter] do   
-  end
- 
-  get 'posts/filter/:tag_name' => 'posts#filter'
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
   
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  devise_scope :users do
+    get 'sign_in', to: 'devise/sessions#new'
+    get 'sign_out', to: 'devise/sessions#destroy'
+    get 'register', to: 'devise/registrations#new'
+  end
 
-  # You can have the root of your site routed with "root"
+  devise_scope :user do
+    post 'users/avatar' => 'users/registrations#avatar', as: :edit_user_avatar
+    delete 'users/avatar' => 'users/registrations#destroy_avatar', as: :destroy_user_avatar
+  end
+  
+  resources :posts
+
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with 'rake routes'.
+
+  # You can have the root of your site routed with 'root'
   root 'posts#index'
+  
+ 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
