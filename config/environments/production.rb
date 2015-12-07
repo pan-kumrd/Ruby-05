@@ -79,5 +79,5 @@ Rails.application.configure do
 
   # Open emails locally instead of actually mailing them
   config.action_mailer.delivery_method = :letter_opener_web
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'ruby-06.herokuapp.com' }
 end
