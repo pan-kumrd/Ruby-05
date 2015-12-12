@@ -46,10 +46,12 @@
     </div>
     <% end %>
 
-    <div class="form-group">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-    </div>
+    <% if not @user.has_role? :admin %>
+      <div class="form-group">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, class: 'form-control' %>
+      </div>
+    <% end %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -81,6 +83,8 @@
   </div>
 </div>
 
+<% if not @user.has_role? :admin %>
+
 <div class="panel panel-danger">
   <div class="panel-heading">
     <div class="panel-title">
@@ -96,3 +100,5 @@
     <%= link_to "Back", posts_path, class: 'btn btn-link' %>
   </div>
 </div>
+
+<% end %>
