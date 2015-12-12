@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'users/avatar' => 'users/registrations#avatar', as: :edit_user_avatar
     delete 'users/avatar' => 'users/registrations#destroy_avatar', as: :destroy_user_avatar
+    get 'users' => 'users/registrations#list', as: :list_users
   end
   
   resources :posts
