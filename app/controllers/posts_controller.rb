@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   # GET /posts/filter
   def filter
     @posts = Post.tagged_with(params[:tag_name])
-    @tags = @posts.tag_counts_on(:tags).sort { |a, b| a.count <=> b.count }.reverse
+    @tags = Post.tag_counts_on(:tags).sort { |a, b| a.count <=> b.count }.reverse
     respond_to do |format|
       format.html { render 'posts/index' }
     end
