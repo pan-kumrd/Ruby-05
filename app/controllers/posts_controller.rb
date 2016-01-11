@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+
+   rescue_from CanCan::AccessDenied do |exception|
+     respond_to do |format|
+       format.html { redirect_to root_url, alert: exception.message }
+     end
+   end
 
   # GET /posts
   # GET /posts.json
@@ -19,11 +24,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    unless can? :update, @post
-      respond_to do |format|
-        format.html { redirect_to posts_path, alert: 'You are not allowed to edit this post' }
-      end
-    end
   end
 
   # POST /posts
@@ -46,19 +46,13 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    unless can? :update, @post
-      respond_to do |format|
-        format.html { redirect_to posts_path, alert: 'You are not allowed to update this post.' }
-      end
-    else
-      respond_to do |format|
-        if @post.update(post_params)
-          format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
-          format.json { render :show, status: :ok, location: @post }
-        else
-          format.html { render :edit }
-          format.json { render json: @post.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to posts_path, notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      else
+        format.html { render :edit }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -66,16 +60,10 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    unless can? :destroy, @post
-      respond_to do |format|
-        format.html { redirect_to posts_url, alert: 'You are not allowed to delete this post.' }
-      end
-    else
-      @post.destroy
-      respond_to do |format|
-        format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+    @post.destroy
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
