@@ -17,7 +17,7 @@
 <table class="table">
   <tbody>
   <% @posts.each do |post| %>
-    <tr id="post-row-#<%= post.id %>">
+    <tr id="post-row-<%= post.id %>">
       <td>
         <div class="post-head">
           <span class="post-title"><%= post.title %></span> by <span class="post-author"><%= post.author %></span>
