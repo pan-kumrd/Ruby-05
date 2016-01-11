@@ -20,7 +20,7 @@
     <%= f.text_field :title, id: 'post_title' %>
   </div>
   <div class="field">
-    <%= f.label :tag_list %><br>
+    <%= f.label :tags_string %><br>
     <%= f.text_field :tag_list, value: @post.tag_list.join(", "), id: 'post_tags_string' %>
   </div>
   <div class="field">
